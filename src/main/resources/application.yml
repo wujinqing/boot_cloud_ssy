@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: mytest
+  mandatory-file-encoding: UTF-8
+  http:
+    encoding:
+      enabled: true
+      charset: UTF-8
+
+server:
+  port: 9090
+
+# 自定义配置
+myConfig:
+  myObject:
+    myName: zhangsan
+    myAge: 10
