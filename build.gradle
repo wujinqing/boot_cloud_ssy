@@ -44,7 +44,11 @@ dependencies {
     compile (
             "org.springframework.boot:spring-boot-starter-web",
             "org.projectlombok:lombok:1.18.8",
-            "org.springframework.boot:spring-boot-loader"
+            "org.springframework.boot:spring-boot-loader",
+            "org.springframework.boot:spring-boot-starter-websocket",
+            "org.springframework.boot:spring-boot-starter-json",
+            "org.springframework.boot:spring-boot-starter-test",
+            "org.springframework.boot:spring-boot-devtools",
 
     )
 }

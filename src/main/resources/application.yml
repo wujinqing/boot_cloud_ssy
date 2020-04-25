@@ -14,4 +14,16 @@ server:
 myConfig:
   myObject:
     myName: zhangsan
-    myAge: 10
+    myAge: 190
+logging:
+  level:
+    root: info
+  path: logs/mylog
+
+
+
+
+
+
+
+
