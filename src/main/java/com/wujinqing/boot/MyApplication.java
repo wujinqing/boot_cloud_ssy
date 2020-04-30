@@ -27,6 +27,7 @@ public class MyApplication implements WebSocketConfigurer{
 
 
     public static void main(String[] args) {
+
 //        System.out.println(MyApplication.class.getClassLoader());
         SpringApplication.run(MyApplication.class, args);
 
