@@ -41,7 +41,7 @@ public class MyApplication implements WebSocketConfigurer{
     @PostConstruct
     public void myLog()
     {
-        logger.trace("Trace Message");
+        logger.trace("Trace Message.");
         logger.debug("Debug Message");
         logger.info("Info Message");
         logger.warn("Warn Message");

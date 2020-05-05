@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
-    <include resource="org/springframework/boot/logging/logback/base.xml" />
-    <logger name="com.wujinqing.boot" level="DEBUG" />
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <logger name="com.wujinqing.boot" level="DEBUG"/>
 
+    <!--
+    springProfile对于的是这里的profile
+    No active profile set, falling back to default profiles: default
+    不同的环境定义不同的springProfile，比如开发、测试、生产环境分别定义不同的springProfile
+    -->
     <springProfile name="default">
-        <!--<logger name="com.wujinqing.boot" level="OFF" />-->
-        <logger name="com.wujinqing.boot" level="INFO" />
+        <logger name="com.wujinqing.boot" level="INFO"/>
+    </springProfile>
+    <springProfile name="dev">
+        <logger name="com.wujinqing.boot" level="TRACE"/>
+    </springProfile>
+    <springProfile name="test">
+        <logger name="com.wujinqing.boot" level="DEBUG"/>
+    </springProfile>
+    <springProfile name="pro">
+        <logger name="com.wujinqing.boot" level="INFO"/>
     </springProfile>
 </configuration>

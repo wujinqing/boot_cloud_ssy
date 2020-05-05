@@ -49,6 +49,8 @@ dependencies {
             "org.springframework.boot:spring-boot-starter-json",
             "org.springframework.boot:spring-boot-starter-test",
             "org.springframework.boot:spring-boot-devtools",
+            "javax.servlet:jstl",
+            "org.apache.tomcat.embed:tomcat-embed-jasper"
 
     )
 }

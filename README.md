@@ -190,18 +190,64 @@ Environment还可以使用@PropertySource里面的东西
 
 
 ### Environment环境
-> 代表当前应用正在运行的环境。
+> 代表当前应用正在运行的环境。环境有两个重要组成部分: profiles和properties. Environment是在应用内部使用的，开发人员一般会通过${...}方式获取。
 
 
+#### ConfigurableEnvironment
+> ConfigurableEnvironment是Environment子接口，提供了设置激活的及默认的profiles的方法，并且允许你操纵底层的属性源。
 
 
+### ApplicationRunner和CommandLineRunner
+> 在应用启动的时候会调用该接口实现类的run方法，两个Runner接口的区别在于，对命令行参数是否进行了封装。
+
+#### ApplicationRunner
+> run(ApplicationArguments args) 命令行参数args已经被封装成ApplicationArguments对象
+
+#### CommandLineRunner
+> run(String... args) 原生的命令行参数
 
 
+### WebSocket 长连接
+
+> @EnableWebSocket
+
+> WebSocketConfigurer
+
+> EchoWebSocketHandler
+
+```
+@Override
+    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+        registry.addHandler(webSocketHandler(), "/echo").withSockJS();
+    }
+
+```
 
 
+#### devtools 使用配置
+> 1.引入依赖:"org.springframework.boot:spring-boot-devtools"
+
+> 2.配置自动编译
+
+![](doc/img/s11.png)
+
+> 3.按shift+alt+command+/四个按键，弹出Maintenance框，选择Registy, 勾选上compiler.automake.allow.when.app.running.
+
+![](doc/img/s12.png)
+
+![](doc/img/s13.png)
+
+#### devtools 热部署原理
+```
+org.springframework.boot.devtools.restart.classloader.RestartClassLoader
 
 
+它有两个类加载器，一个用于加载第三方jar包里面的Class文件，另一个用来加载我们项目里面的Class文件。
 
+当用来加载我们项目Class文件的类加载器监测到我们项目的Class文件发送变动时，会并且只会重新加载我们项目的Class文件。
+这样被加载类大大减少。
+
+```
 
 
 
