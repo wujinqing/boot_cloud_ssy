@@ -89,6 +89,19 @@ For a topic with replication factor N, we will tolerate up to N-1 server failure
 
 ![](doc/img/s22.png)
 
+### 删除主题(不可逆的)
+> bin/kafka-topics.sh --bootstrap-server localhost:9092 --delete --topic yourTopic
+
+![](doc/img/s25.png)
+
+![](doc/img/s26.png)
+
+
+### 连接到Zookeeper
+
+> bin/zookeeper-shell.sh localhost:2181
+
+
 ### 关于kafka分区:
 > 1.每个分区都是一个有序、不可变的消息序列，后续新来的消息会源源不断地、持续追加到分区的后面，这相当于一种结构化的提交日志(类似于Git的提交日志)。
 
@@ -141,7 +154,7 @@ For a topic with replication factor N, we will tolerate up to N-1 server failure
 > 4.leader-epoch-checkpoint: 是leader的一个缓存文件。实际上，它是与kafka的HW(High Water)与LEO(Log End Offset)相关的一个重要文件。
 
 
-
+![](doc/img/s24.png)
 
 
 

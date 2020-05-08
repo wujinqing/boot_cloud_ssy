@@ -50,7 +50,9 @@ dependencies {
             "org.springframework.boot:spring-boot-starter-test",
             "org.springframework.boot:spring-boot-devtools",
             "javax.servlet:jstl",
-            "org.apache.tomcat.embed:tomcat-embed-jasper"
+            "org.apache.tomcat.embed:tomcat-embed-jasper",
+            "org.springframework.kafka:spring-kafka",
+            "com.google.code.gson:gson"
 
     )
 }
