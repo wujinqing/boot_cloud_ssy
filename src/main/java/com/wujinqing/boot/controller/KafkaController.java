@@ -16,7 +16,7 @@ import java.util.Date;
 @RestController
 @RequestMapping(value = "/kafka", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class KafkaController {
-    @Autowired
+//    @Autowired
     private KafkaProducer kafkaProducer;
 
     @RequestMapping(value = "/message", method = RequestMethod.GET)

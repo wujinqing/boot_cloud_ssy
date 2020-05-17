@@ -250,15 +250,62 @@ org.springframework.boot.devtools.restart.classloader.RestartClassLoader
 ```
 
 
+### Servlet 3.0规范
+> 从Servlet 3.0规范开始可以不需要web.xml了，转而用以下三个注解
+
+#### @WebServlet
+
+#### @WebFilter
+
+#### @WebListener
+
+### ServletContainerInitializer
+### SpringServletContainerInitializer
+> SpringServletContainerInitializer是ServletContainerInitializer的一个实现，设计用来支持基于代码的配置，通过使用WebApplicationInitializer来实现。，
+> 它可以完全替代传统的web.xml的方式，也可以和传统web.xml方式一起搭配使用.
+
+##### 操作机制
+> Servlet container(如: tomcat)在启动的时候会检测是否存在META-INF/services/javax.servlet.ServletContainerInitializer这个文件，
+> 如果存在会通过ServiceLoader.load(Class)的方式加载并实例化它，并且调用它的onStartup方法。
+
+#### SpringServletContainerInitializer与WebApplicationInitializer之间的关系
+> WebApplicationInitializer#onStartup(ServletContext)与ServletContainerInitializer#onStartup(Set, ServletContext)的签名很像，
+> 实际上ServletContext的初始化是委托给WebApplicationInitializer来实现的。
+
+> 如果在类路径中没有检测到任何WebApplicationInitializer的实现类，SpringServletContainerInitializer将不起任何作用。
+
+> 所有的servlet, listener, or filter应该通过WebApplicationInitializer来实现注册(而不是通过SpringServletContainerInitializer)。
+
+> SpringServletContainerInitializer应该被设计成内部使用的，而用户只会使用WebApplicationInitializer来完成相应的事情。
+
+#### SpringServletContainerInitializer#onStartup(Set, ServletContext)方法的作用
+> 将ServletContext委托给任意一个WebApplicationInitializer，由于SpringServletContainerInitializer类声明了@HandlesTypes(WebApplicationInitializer.class)注解，
+> 所以Servlet 3.0+ containers(如tomcat)会在类路径下自动扫描WebApplicationInitializer的所有实现类，并传递给SpringServletContainerInitializer#onStartup方法作为入参。
+
+> 每个WebApplicationInitializer的onStartup都会被调用，每个WebApplicationInitializer实例都可以去注册和配置servlets(如：DispatcherServlet)，listeners(如: ContextLoaderListener)以及filters。
+
+
+#### @HandlesTypes的作用
+> 会将所有@HandlesTypes中指定的接口的所有实现类放到一个Set中，并把它作为SpringServletContainerInitializer#onStartup方法的第一个参数传递进来。
+
+
+### WebApplicationInitializer
 
 
 
+### TomcatStarter 实现了ServletContainerInitializer接口，它是spring boot内嵌的tomcat的启动器。SpringServletContainerInitializer是传统的spring MVC的启动器，不是spring boot的
 
 
+### 传统的spring MVC的容器的初始化过程
+
+![](doc/img/s27.png)
+
+![](doc/img/s28.png)
+
+![](doc/img/s29.png)
 
 
-
-
+### @ServletComponentScan 用来扫描@WebServlet，@WebFilter及@WebListener。
 
 
 

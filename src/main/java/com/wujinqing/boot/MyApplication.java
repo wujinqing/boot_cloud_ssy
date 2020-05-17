@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.socket.client.WebSocketClient;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
@@ -20,7 +21,8 @@ import javax.annotation.PostConstruct;
  * JDWP: Java Debug Wire Protocol Java调试协议
  */
 @SpringBootApplication
-@EnableWebSocket
+//@EnableWebSocket
+//@ServletComponentScan
 public class MyApplication implements WebSocketConfigurer{
 
     private static final Logger logger = LoggerFactory.getLogger(MyApplication.class);
